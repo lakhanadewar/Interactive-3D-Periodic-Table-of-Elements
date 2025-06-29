@@ -26,7 +26,7 @@ export default function ElementBlock({ element }: ElementBlockProps) {
       <Link href={`/element/${element.name}`} className="block h-full w-full">
         <div
           className={cn(
-            'relative group w-full h-20 md:h-24 p-2 rounded-lg text-white transition-all duration-300 transform-style-3d cursor-pointer flex flex-col justify-between',
+            'relative group w-full h-16 md:h-24 p-1 sm:p-2 rounded-lg text-white transition-all duration-300 transform-style-3d cursor-pointer flex flex-col justify-between',
             'bg-card/50 border border-border/30 hover:border-transparent backdrop-blur-sm'
           )}
           style={{
@@ -48,8 +48,8 @@ export default function ElementBlock({ element }: ElementBlockProps) {
             <div className="text-xs font-bold text-white/70">{element.number}</div>
           </div>
           <div className="relative text-center">
-            <div className="text-2xl md:text-3xl font-bold tracking-tighter font-headline">{element.symbol}</div>
-            <div className="text-[10px] md:text-xs truncate text-white/70">{element.name}</div>
+            <div className="text-xl md:text-3xl font-bold tracking-tighter font-headline">{element.symbol}</div>
+            <div className="text-[9px] md:text-xs truncate text-white/70">{element.name}</div>
           </div>
           <div className="h-1"></div>
         </div>

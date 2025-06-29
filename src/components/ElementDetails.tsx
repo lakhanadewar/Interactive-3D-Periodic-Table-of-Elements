@@ -17,7 +17,7 @@ export default function ElementDetails({ element }: ElementDetailsProps) {
     { label: "Electron Config", value: element.electron_configuration },
     { label: "Electronegativity", value: element.electronegativity_pauling },
     { label: "Electron Affinity", value: element.electron_affinity },
-    { label: "Ionization Energies", value: element.ionization_energies.slice(0, 3).join(', ') },
+    { label: "Ionization Energies", value: Array.isArray(element.ionization_energies) ? element.ionization_energies.slice(0, 3).join(', ') : element.ionization_energies },
   ];
 
   return (

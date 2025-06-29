@@ -11,11 +11,11 @@ export interface ElementData {
   symbol: string;
   xpos: number;
   ypos: number;
-  shells: number[];
+  shells: number | number[];
   electron_configuration: string;
   electron_affinity: number | null;
   electronegativity_pauling: number | null;
-  ionization_energies: (number | null)[];
+  ionization_energies: number | (number | null)[] | null;
   cpkHex: string | null;
   bohr_model_image: string | null;
   bohr_model_3d: string | null;

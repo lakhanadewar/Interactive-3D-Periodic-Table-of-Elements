@@ -2,7 +2,7 @@
 
 import { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { useGLTF, OrbitControls, Stage } from '@react-three/drei';
+import { useGLTF, OrbitControls } from '@react-three/drei';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import Loader from '@/components/ui/loader';
@@ -37,11 +37,12 @@ export default function ElementModelViewer({ name, modelUrl }: ElementModelViewe
                   <Loader />
                 </div>
               }>
-                <Canvas camera={{ fov: 45, position: [0, 0, 5] }}>
-                  <Stage environment="city" intensity={0.6} shadows={{ type: 'contact', opacity: 0.2, blur: 2 }}>
-                    <Model url={modelUrl} />
-                  </Stage>
-                  <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={1.5} />
+                <Canvas camera={{ fov: 45, position: [0, 0, 8] }}>
+                  <ambientLight intensity={Math.PI / 2} />
+                  <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} decay={0} intensity={Math.PI} />
+                  <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} />
+                  <Model url={modelUrl} />
+                  <OrbitControls enableZoom={true} autoRotate autoRotateSpeed={1.5} />
                 </Canvas>
               </Suspense>
             ) : (

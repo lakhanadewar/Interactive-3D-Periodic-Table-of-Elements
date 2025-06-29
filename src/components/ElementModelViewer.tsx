@@ -19,10 +19,6 @@ interface ElementModelViewerProps {
 }
 
 export default function ElementModelViewer({ name, modelUrl }: ElementModelViewerProps) {
-  if (modelUrl) {
-    useGLTF.preload(modelUrl);
-  }
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}

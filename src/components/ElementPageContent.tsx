@@ -59,7 +59,6 @@ export default function ElementPageContent({ element }: ElementPageContentProps)
         <div className="lg:col-span-1 space-y-8">
           <ElementModelViewer 
             name={element.name}
-            imageUrl={element.bohr_model_image}
             modelUrl={element.bohr_model_3d}
           />
           <ElementRecommendations element={element} />

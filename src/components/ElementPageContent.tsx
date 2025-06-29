@@ -3,12 +3,29 @@
 import type { ElementData } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
 import ElementDetails from "@/components/ElementDetails";
-import ElementModelViewer from "@/components/ElementModelViewer";
 import ElementRecommendations from "@/components/ElementRecommendations";
 import { categoryColors } from "@/lib/category-colors";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+
+const ElementModelViewer = dynamic(() => import("@/components/ElementModelViewer"), {
+  ssr: false,
+  loading: () => (
+    <Card className="bg-card/50 backdrop-blur-sm overflow-hidden group">
+      <CardHeader>
+        <CardTitle className="font-headline text-2xl">Atomic Model</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <Skeleton className="aspect-square w-full rounded-lg" />
+      </CardContent>
+    </Card>
+  ),
+});
+
 
 interface ElementPageContentProps {
   element: ElementData;

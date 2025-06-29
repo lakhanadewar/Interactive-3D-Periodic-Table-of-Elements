@@ -1,17 +1,12 @@
 'use client';
 
-import { Suspense } from 'react';
-import { Canvas } from '@react-three/fiber';
-import { useGLTF, OrbitControls } from '@react-three/drei';
+import React, { useRef, useEffect, useState } from 'react';
+import * as THREE from 'three';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import Loader from '@/components/ui/loader';
-
-function Model({ url }: { url: string }) {
-  const { scene } = useGLTF(url);
-  // A larger scale to make the models more visible
-  return <primitive object={scene} scale={3} />;
-}
 
 interface ElementModelViewerProps {
   name: string;
@@ -19,6 +14,102 @@ interface ElementModelViewerProps {
 }
 
 export default function ElementModelViewer({ name, modelUrl }: ElementModelViewerProps) {
+  const mountRef = useRef<HTMLDivElement>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!modelUrl || !mountRef.current) {
+        setIsLoading(false);
+        return;
+    }
+    
+    setIsLoading(true);
+    setError(null);
+    const currentMount = mountRef.current;
+
+    // Scene
+    const scene = new THREE.Scene();
+    
+    // Camera
+    const camera = new THREE.PerspectiveCamera(45, currentMount.clientWidth / currentMount.clientHeight, 0.1, 1000);
+    camera.position.set(0, 0, 8);
+
+    // Renderer
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setSize(currentMount.clientWidth, currentMount.clientHeight);
+    renderer.setPixelRatio(window.devicePixelRatio);
+    currentMount.innerHTML = ''; // Clear previous renders
+    currentMount.appendChild(renderer.domElement);
+
+    // Controls
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableZoom = true;
+    controls.autoRotate = true;
+    controls.autoRotateSpeed = 1.5;
+    controls.enableDamping = true;
+
+    // Lighting
+    const ambientLight = new THREE.AmbientLight(0xffffff, 1.5);
+    scene.add(ambientLight);
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 1.5);
+    directionalLight.position.set(5, 10, 7.5);
+    scene.add(directionalLight);
+
+    // Model loader
+    const loader = new GLTFLoader();
+    loader.load(
+      modelUrl,
+      (gltf) => {
+        const model = gltf.scene;
+        model.scale.set(3, 3, 3);
+        
+        const box = new THREE.Box3().setFromObject(model);
+        const center = box.getCenter(new THREE.Vector3());
+        model.position.sub(center);
+
+        scene.add(model);
+        setIsLoading(false);
+      },
+      undefined,
+      (err) => {
+        console.error('An error happened while loading the model:', err);
+        setError('Model could not be loaded.');
+        setIsLoading(false);
+      }
+    );
+
+    // Animation loop
+    let animationFrameId: number;
+    const animate = () => {
+      animationFrameId = requestAnimationFrame(animate);
+      controls.update();
+      renderer.render(scene, camera);
+    };
+    animate();
+
+    // Handle resize
+    const handleResize = () => {
+      if (!mountRef.current) return;
+      const { clientWidth, clientHeight } = mountRef.current;
+      camera.aspect = clientWidth / clientHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(clientWidth, clientHeight);
+    };
+    window.addEventListener('resize', handleResize);
+
+    // Cleanup
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      cancelAnimationFrame(animationFrameId);
+      controls.dispose();
+      renderer.dispose();
+      if(currentMount){
+        currentMount.innerHTML = '';
+      }
+    };
+  }, [modelUrl]);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -31,23 +122,12 @@ export default function ElementModelViewer({ name, modelUrl }: ElementModelViewe
         </CardHeader>
         <CardContent>
           <div className="aspect-square relative rounded-lg overflow-hidden bg-transparent border border-border/20 shadow-inner">
-            {modelUrl ? (
-              <Suspense fallback={
-                <div className="w-full h-full flex items-center justify-center bg-card/50">
-                  <Loader />
-                </div>
-              }>
-                <Canvas camera={{ fov: 45, position: [0, 0, 8] }}>
-                  <ambientLight intensity={Math.PI / 2} />
-                  <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} decay={0} intensity={Math.PI} />
-                  <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} />
-                  <Model url={modelUrl} />
-                  <OrbitControls enableZoom={true} autoRotate autoRotateSpeed={1.5} />
-                </Canvas>
-              </Suspense>
-            ) : (
-              <div className="w-full h-full flex items-center justify-center bg-card/50">
-                <p className="text-muted-foreground">Model not available</p>
+            <div ref={mountRef} className="w-full h-full" />
+            {(isLoading || error || !modelUrl) && (
+              <div className="absolute inset-0 w-full h-full flex items-center justify-center bg-card/50 pointer-events-none">
+                {isLoading && <Loader />}
+                {error && <p className="text-destructive text-sm px-4 text-center">{error}</p>}
+                {!modelUrl && !error && <p className="text-muted-foreground">Model not available</p>}
               </div>
             )}
           </div>

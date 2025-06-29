@@ -9,7 +9,7 @@ export async function generateStaticParams() {
   }));
 }
 
-export default function ElementPage({ params }: { params: { name: string } }) {
+export default async function ElementPage({ params }: { params: { name: string } }) {
   const element = getElementByName(decodeURIComponent(params.name));
 
   if (!element) {

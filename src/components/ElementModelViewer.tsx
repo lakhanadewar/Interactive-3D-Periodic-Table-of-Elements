@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Cube } from "lucide-react";
+import { Box } from "lucide-react";
 import { motion } from "framer-motion";
 
 interface ElementModelViewerProps {
@@ -46,13 +46,13 @@ export default function ElementModelViewer({ name, imageUrl, modelUrl }: Element
           {modelUrl ? (
             <Button asChild className="w-full bg-accent hover:bg-accent/90 text-accent-foreground">
               <Link href={modelUrl} target="_blank" rel="noopener noreferrer">
-                <Cube className="mr-2 h-4 w-4" />
+                <Box className="mr-2 h-4 w-4" />
                 View in 3D / AR
               </Link>
             </Button>
           ) : (
             <Button className="w-full" disabled>
-              <Cube className="mr-2 h-4 w-4" />
+              <Box className="mr-2 h-4 w-4" />
               3D Model Unavailable
             </Button>
           )}

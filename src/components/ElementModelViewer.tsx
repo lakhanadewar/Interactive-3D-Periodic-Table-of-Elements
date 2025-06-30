@@ -33,7 +33,7 @@ export default function ElementModelViewer({ name, modelUrl }: ElementModelViewe
     
     // Camera
     const camera = new THREE.PerspectiveCamera(45, currentMount.clientWidth / currentMount.clientHeight, 0.1, 1000);
-    camera.position.set(0, 0, 8);
+    camera.position.set(0, 5, 0);
 
     // Renderer
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });

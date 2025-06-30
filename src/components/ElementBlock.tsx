@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
-import { categoryColors } from '@/lib/category-colors';
 import type { ElementData } from '@/lib/types';
 
 interface ElementBlockProps {
@@ -11,8 +10,7 @@ interface ElementBlockProps {
 }
 
 export default function ElementBlock({ element }: ElementBlockProps) {
-  const colorInfo = categoryColors[element.category] || categoryColors['unknown'];
-  const glowColor = colorInfo.hex;
+  const glowColor = 'hsl(var(--primary))';
 
   return (
     <motion.div

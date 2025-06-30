@@ -51,8 +51,11 @@ export default function ElementBlock({ element }: ElementBlockProps) {
             <div className="text-xl md:text-3xl font-bold tracking-tighter font-headline">{element.symbol}</div>
             <div className="relative text-[9px] md:text-xs text-white/70 h-4 overflow-hidden">
               <p className="truncate w-full h-full flex items-center justify-center transition-opacity duration-200 group-hover:opacity-0">{element.name}</p>
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap flex items-center">
-                <p className="animate-marquee">{element.name}</p>
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center">
+                <p className="animate-marquee flex-shrink-0 flex">
+                  <span className="whitespace-nowrap px-2">{element.name}</span>
+                  <span className="whitespace-nowrap px-2" aria-hidden="true">{element.name}</span>
+                </p>
               </div>
             </div>
           </div>

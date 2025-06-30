@@ -15,16 +15,16 @@ export default function ElementBlock({ element }: ElementBlockProps) {
   return (
     <motion.div
       whileHover="hover"
-      className="w-full h-full transform-style-3d"
+      className="relative w-full h-full z-0 hover:z-10"
       variants={{
-        hover: { scale: 1.1, z: 20 },
+        hover: { scale: 1.1 },
       }}
       transition={{ type: 'spring', stiffness: 300, damping: 15 }}
     >
       <Link href={`/element/${element.name}`} className="block h-full w-full">
         <div
           className={cn(
-            'relative group w-full aspect-square p-1 sm:p-2 rounded-lg text-white transition-all duration-300 transform-style-3d cursor-pointer flex flex-col justify-between',
+            'relative group w-full aspect-square p-1 sm:p-2 rounded-lg text-white transition-all duration-300 cursor-pointer flex flex-col justify-between',
             'bg-card/50 border border-border/30 hover:border-transparent backdrop-blur-sm'
           )}
           style={{
@@ -32,7 +32,7 @@ export default function ElementBlock({ element }: ElementBlockProps) {
           } as React.CSSProperties}
         >
           <div 
-            className="absolute -inset-px rounded-lg bg-gradient-to-br from-primary/50 to-accent/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-lg"
+            className="absolute -inset-px rounded-lg bg-primary/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-lg"
             aria-hidden="true"
           ></div>
           <div 

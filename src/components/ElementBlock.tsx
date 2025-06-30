@@ -15,13 +15,13 @@ export default function ElementBlock({ element }: ElementBlockProps) {
   return (
     <motion.div
       whileHover="hover"
-      className="relative w-full h-full z-0 hover:z-10"
+      className="relative w-full z-0 hover:z-10"
       variants={{
         hover: { scale: 1.1 },
       }}
       transition={{ type: 'spring', stiffness: 300, damping: 15 }}
     >
-      <Link href={`/element/${element.name}`} className="block h-full w-full">
+      <Link href={`/element/${element.name}`} className="block w-full">
         <div
           className={cn(
             'relative group w-full aspect-square p-1 sm:p-2 rounded-lg text-white transition-all duration-300 cursor-pointer flex flex-col justify-between',

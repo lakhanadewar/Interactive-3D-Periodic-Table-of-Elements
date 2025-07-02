@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import type { ElementData } from "@/lib/types";
 import { motion } from "framer-motion";
+import { Lightbulb } from "lucide-react";
 
 interface ElementDetailsProps {
   element: ElementData;
@@ -42,8 +43,20 @@ export default function ElementDetails({ element }: ElementDetailsProps) {
               <TabsTrigger value="summary">Summary</TabsTrigger>
               <TabsTrigger value="properties">Properties</TabsTrigger>
             </TabsList>
-            <TabsContent value="summary" className="mt-4">
+            <TabsContent value="summary" className="mt-4 space-y-4">
               <p className="text-muted-foreground leading-relaxed">{element.summary}</p>
+              
+              {element.fun_fact && (
+                <div className="mt-4 pt-4 border-t border-border/20">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Lightbulb className="w-5 h-5 text-accent" />
+                    <h4 className="font-headline text-lg font-semibold text-accent-foreground">Fun Fact</h4>
+                  </div>
+                  <blockquote className="border-l-2 border-accent pl-4 italic text-muted-foreground">
+                    {element.fun_fact}
+                  </blockquote>
+                </div>
+              )}
             </TabsContent>
             <TabsContent value="properties" className="mt-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4">

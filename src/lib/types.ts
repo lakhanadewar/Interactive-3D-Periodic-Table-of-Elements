@@ -24,4 +24,5 @@ export interface ElementData {
   cpkHex: string | null;
   bohr_model_image: string | null;
   bohr_model_3d: string | null;
+  fun_fact: string;
 }

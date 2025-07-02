@@ -33,8 +33,8 @@ export default function ElementBlock({ element }: ElementBlockProps) {
             <Link href={`/element/${element.name}`} className="block w-full aspect-square" title={element.name}>
               <div
                 className={cn(
-                  'relative group w-full h-full p-1 sm:p-2 rounded-lg transition-all duration-300 cursor-pointer text-foreground',
-                  'bg-secondary border border-border hover:border-primary/50',
+                  'relative group w-full h-full rounded-lg transition-all duration-300 cursor-pointer',
+                  'bg-secondary/50 border border-border text-foreground',
                   'dark:bg-card/50 dark:border-border/30 dark:hover:border-primary/50 dark:backdrop-blur-sm'
                 )}
                 style={{
@@ -52,14 +52,16 @@ export default function ElementBlock({ element }: ElementBlockProps) {
                   }}
                 ></div>
                 
-                <div className="absolute top-1 left-2 text-xs font-bold text-muted-foreground">{element.number}</div>
-
-                <div className="relative flex flex-col items-center justify-center h-full text-center">
-                    <div className="text-xl md:text-3xl font-bold tracking-tighter font-headline">{element.symbol}</div>
-                    <div className="w-full text-[10px] md:text-xs text-muted-foreground truncate px-1">
-                        {element.name}
-                    </div>
+                <div className="relative flex flex-col h-full p-1">
+                  <div className="text-left text-[10px] font-medium text-muted-foreground">{element.number}</div>
+                  <div className="flex-grow flex flex-col items-center justify-center -mt-4 text-center">
+                      <div className="text-xl sm:text-2xl font-bold tracking-tighter font-headline leading-none">{element.symbol}</div>
+                      <div className="text-[10px] leading-tight text-muted-foreground truncate w-full px-1">
+                          {element.name}
+                      </div>
+                  </div>
                 </div>
+
               </div>
             </Link>
           </TooltipTrigger>

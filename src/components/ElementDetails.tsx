@@ -50,9 +50,9 @@ export default function ElementDetails({ element }: ElementDetailsProps) {
                 <div className="mt-4 pt-4 border-t border-border/20">
                   <div className="flex items-center gap-2 mb-2">
                     <Lightbulb className="w-5 h-5 text-accent" />
-                    <h4 className="font-headline text-lg font-semibold text-accent-foreground">Fun Fact</h4>
+                    <h4 className="font-headline text-lg font-semibold text-accent">Fun Fact</h4>
                   </div>
-                  <blockquote className="border-l-2 border-accent pl-4 italic text-muted-foreground">
+                  <blockquote className="border-l-2 border-accent pl-4 italic text-foreground/80">
                     {element.fun_fact}
                   </blockquote>
                 </div>

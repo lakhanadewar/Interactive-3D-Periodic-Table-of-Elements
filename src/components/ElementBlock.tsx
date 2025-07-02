@@ -55,17 +55,17 @@ export default function ElementBlock({ element }: ElementBlockProps) {
                 ></div>
                 
                 {/* Content */}
-                <div className="relative w-full h-full p-1">
+                <div className="relative w-full h-full">
                   <div className="absolute top-1 left-1 text-[10px] font-medium text-muted-foreground">
                     {element.number}
                   </div>
-                  <div className="flex flex-col items-center justify-center h-full pt-2">
-                    <div className="text-xl md:text-2xl font-bold font-headline leading-none">
-                      {element.symbol}
-                    </div>
-                    <div className="text-[10px] leading-tight text-muted-foreground truncate w-full text-center px-1">
-                      {element.name}
-                    </div>
+                  <div className="flex h-full w-full flex-col items-center justify-center p-1">
+                      <div className="text-xl font-bold font-headline leading-none">
+                        {element.symbol}
+                      </div>
+                      <div className="w-full truncate px-1 text-center text-[10px] leading-tight text-muted-foreground">
+                        {element.name}
+                      </div>
                   </div>
                 </div>
               </div>

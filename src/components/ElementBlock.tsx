@@ -21,7 +21,7 @@ export default function ElementBlock({ element }: ElementBlockProps) {
   return (
     <motion.div
       whileHover="hover"
-      className="relative w-full z-0 hover:z-10"
+      className="relative z-0 hover:z-10"
       variants={{
         hover: { scale: 1.1 },
       }}
@@ -34,8 +34,7 @@ export default function ElementBlock({ element }: ElementBlockProps) {
               <div
                 className={cn(
                   'relative group w-full h-full rounded-lg transition-all duration-300 cursor-pointer',
-                  'text-foreground',
-                  'bg-background border border-border/30 hover:border-primary/50', // Light mode styles
+                  'text-foreground bg-background/30 border border-border/30 hover:border-primary/50', // Light mode styles
                   'dark:bg-card/50 dark:border-border/30 dark:hover:border-primary/50 dark:backdrop-blur-sm' // Dark mode styles
                 )}
                 style={{
@@ -55,15 +54,15 @@ export default function ElementBlock({ element }: ElementBlockProps) {
                 ></div>
                 
                 {/* Content */}
-                <div className="relative w-full h-full">
+                <div className="relative w-full h-full p-1 text-center">
                   <div className="absolute top-1 left-1 text-[10px] font-medium text-muted-foreground">
                     {element.number}
                   </div>
-                  <div className="flex h-full w-full flex-col items-center justify-center p-1">
+                  <div className="flex h-full w-full flex-col items-center justify-center">
                       <div className="text-xl font-bold font-headline leading-none">
                         {element.symbol}
                       </div>
-                      <div className="w-full truncate px-1 text-center text-[10px] leading-tight text-muted-foreground">
+                      <div className="mt-1 w-full truncate px-1 text-[10px] leading-tight text-muted-foreground">
                         {element.name}
                       </div>
                   </div>

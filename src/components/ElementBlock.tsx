@@ -34,15 +34,17 @@ export default function ElementBlock({ element }: ElementBlockProps) {
               <div
                 className={cn(
                   'relative group w-full h-full rounded-lg transition-all duration-300 cursor-pointer',
-                  'bg-secondary/50 border border-border text-foreground',
-                  'dark:bg-card/50 dark:border-border/30 dark:hover:border-primary/50 dark:backdrop-blur-sm'
+                  'text-foreground',
+                  'bg-background border border-border/30 hover:border-primary/50', // Light mode styles
+                  'dark:bg-card/50 dark:border-border/30 dark:hover:border-primary/50 dark:backdrop-blur-sm' // Dark mode styles
                 )}
                 style={{
                   '--glow-color': glowColor,
                 } as React.CSSProperties}
               >
+                {/* Glow effect for dark mode hover */}
                 <div 
-                  className="absolute -inset-px rounded-lg bg-primary/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-lg"
+                  className="absolute -inset-px rounded-lg bg-primary/50 opacity-0 transition-opacity duration-300 blur-lg dark:group-hover:opacity-100"
                   aria-hidden="true"
                 ></div>
                 <div 
@@ -52,16 +54,20 @@ export default function ElementBlock({ element }: ElementBlockProps) {
                   }}
                 ></div>
                 
-                <div className="relative flex flex-col h-full p-1">
-                  <div className="text-left text-[10px] font-medium text-muted-foreground">{element.number}</div>
-                  <div className="flex-grow flex flex-col items-center justify-center -mt-4 text-center">
-                      <div className="text-xl sm:text-2xl font-bold tracking-tighter font-headline leading-none">{element.symbol}</div>
-                      <div className="text-[10px] leading-tight text-muted-foreground truncate w-full px-1">
-                          {element.name}
-                      </div>
+                {/* Content */}
+                <div className="relative w-full h-full p-1">
+                  <div className="absolute top-1 left-1 text-[10px] font-medium text-muted-foreground">
+                    {element.number}
+                  </div>
+                  <div className="flex flex-col items-center justify-center h-full pt-2">
+                    <div className="text-xl md:text-2xl font-bold font-headline leading-none">
+                      {element.symbol}
+                    </div>
+                    <div className="text-[10px] leading-tight text-muted-foreground truncate w-full text-center px-1">
+                      {element.name}
+                    </div>
                   </div>
                 </div>
-
               </div>
             </Link>
           </TooltipTrigger>

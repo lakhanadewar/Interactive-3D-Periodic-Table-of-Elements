@@ -10,7 +10,8 @@ export async function generateStaticParams() {
 }
 
 export default async function ElementPage({ params }: { params: { name: string } }) {
-  const element = getElementByName(decodeURIComponent(params.name));
+  const { name } = params;
+  const element = getElementByName(decodeURIComponent(name));
 
   if (!element) {
     notFound();

@@ -6,7 +6,7 @@ import ElementDetails from "@/components/ElementDetails";
 import ElementRecommendations from "@/components/ElementRecommendations";
 import { categoryColors } from "@/lib/category-colors";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -29,9 +29,11 @@ const ElementModelViewer = dynamic(() => import("@/components/ElementModelViewer
 
 interface ElementPageContentProps {
   element: ElementData;
+  prevElement: ElementData | null;
+  nextElement: ElementData | null;
 }
 
-export default function ElementPageContent({ element }: ElementPageContentProps) {
+export default function ElementPageContent({ element, prevElement, nextElement }: ElementPageContentProps) {
   const colorInfo = categoryColors[element.category] || categoryColors['unknown'];
 
   return (
@@ -84,6 +86,37 @@ export default function ElementPageContent({ element }: ElementPageContentProps)
           <ElementDetails element={element} />
         </div>
       </div>
+      
+      <nav className="mt-12 flex justify-between items-center border-t border-border/20 pt-6">
+        {prevElement ? (
+          <Link
+            href={`/element/${prevElement.name}`}
+            className="group flex items-center gap-3 text-left transition-colors hover:text-primary"
+          >
+            <ArrowLeft className="h-5 w-5 text-muted-foreground group-hover:text-primary" />
+            <div>
+              <p className="text-sm text-muted-foreground">Previous Element</p>
+              <p className="text-lg font-bold text-foreground group-hover:text-primary">{prevElement.name}</p>
+            </div>
+          </Link>
+        ) : (
+          <div /> // Placeholder to keep the 'Next' button to the right
+        )}
+        {nextElement ? (
+          <Link
+            href={`/element/${nextElement.name}`}
+            className="group flex items-center gap-3 text-right transition-colors hover:text-primary"
+          >
+            <div>
+              <p className="text-sm text-muted-foreground">Next Element</p>
+              <p className="text-lg font-bold text-foreground group-hover:text-primary">{nextElement.name}</p>
+            </div>
+            <ArrowRight className="h-5 w-5 text-muted-foreground group-hover:text-primary" />
+          </Link>
+        ) : (
+          <div /> // Placeholder
+        )}
+      </nav>
     </motion.div>
   );
 }

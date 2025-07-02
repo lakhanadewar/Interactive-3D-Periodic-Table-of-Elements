@@ -12,12 +12,17 @@ interface ElementDetailsProps {
 export default function ElementDetails({ element }: ElementDetailsProps) {
   const properties = [
     { label: "Atomic Mass", value: `${element.atomic_mass} u` },
+    { label: "Density", value: element.density ? `${element.density} g/L` : null },
+    { label: "Melting Point", value: element.melt ? `${element.melt} K` : null },
+    { label: "Boiling Point", value: element.boil ? `${element.boil} K` : null },
+    { label: "Molar Heat", value: element.molar_heat ? `${element.molar_heat} J/(mol·K)` : null },
     { label: "Phase", value: element.phase },
     { label: "Discovered by", value: element.discovered_by },
+    { label: "Named by", value: element.named_by },
     { label: "Electron Config", value: element.electron_configuration },
     { label: "Electronegativity", value: element.electronegativity_pauling },
-    { label: "Electron Affinity", value: element.electron_affinity },
-    { label: "Ionization Energies", value: Array.isArray(element.ionization_energies) ? element.ionization_energies.slice(0, 3).join(', ') : element.ionization_energies },
+    { label: "Electron Affinity", value: element.electron_affinity ? `${element.electron_affinity} kJ/mol` : null },
+    { label: "Ionization Energies", value: Array.isArray(element.ionization_energies) ? `${element.ionization_energies.slice(0, 3).join(', ')} kJ/mol` : (element.ionization_energies ? `${element.ionization_energies} kJ/mol` : null) },
   ];
 
   return (

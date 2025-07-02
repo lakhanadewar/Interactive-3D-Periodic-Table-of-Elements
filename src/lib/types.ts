@@ -1,8 +1,13 @@
 export interface ElementData {
   name: string;
   atomic_mass: number;
+  boil: number | null;
   category: string;
+  density: number | null;
   discovered_by: string | null;
+  melt: number | null;
+  molar_heat: number | null;
+  named_by: string | null;
   number: number;
   period: number;
   group: number;

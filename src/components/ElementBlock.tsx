@@ -21,11 +21,12 @@ export default function ElementBlock({ element }: ElementBlockProps) {
       }}
       transition={{ type: 'spring', stiffness: 300, damping: 15 }}
     >
-      <Link href={`/element/${element.name}`} className="block w-full aspect-square">
+      <Link href={`/element/${element.name}`} className="block w-full aspect-square" title={element.name}>
         <div
           className={cn(
-            'relative group w-full h-full p-1 sm:p-2 rounded-lg text-foreground transition-all duration-300 cursor-pointer flex flex-col justify-between',
-            'bg-secondary border border-border hover:border-transparent dark:bg-card/50 dark:border-border/30 dark:backdrop-blur-sm'
+            'relative group w-full h-full p-1 sm:p-2 rounded-lg transition-all duration-300 cursor-pointer flex flex-col justify-between text-foreground',
+            'bg-secondary border border-border hover:border-primary/50',
+            'dark:bg-card/50 dark:border-border/30 dark:hover:border-primary/50 dark:backdrop-blur-sm'
           )}
           style={{
             '--glow-color': glowColor,
@@ -47,14 +48,8 @@ export default function ElementBlock({ element }: ElementBlockProps) {
           </div>
           <div className="relative text-center">
             <div className="text-xl md:text-3xl font-bold tracking-tighter font-headline">{element.symbol}</div>
-            <div className="relative text-[9px] md:text-xs text-muted-foreground h-4 overflow-hidden">
-              <p className="truncate w-full h-full flex items-center justify-center transition-opacity duration-200 group-hover:opacity-0">{element.name}</p>
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center">
-                <p className="animate-marquee flex-shrink-0 flex">
-                  <span className="whitespace-nowrap px-2">{element.name}</span>
-                  <span className="whitespace-nowrap px-2" aria-hidden="true">{element.name}</span>
-                </p>
-              </div>
+            <div className="text-[10px] md:text-xs text-muted-foreground truncate px-0.5">
+              {element.name}
             </div>
           </div>
           <div className="h-1"></div>

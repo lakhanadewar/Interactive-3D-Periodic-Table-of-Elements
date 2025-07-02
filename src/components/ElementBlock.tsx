@@ -55,7 +55,7 @@ export default function ElementBlock({ element }: ElementBlockProps) {
                 
                 {/* Content */}
                 <div className="relative w-full h-full p-1 text-center">
-                  <div className="absolute top-1 left-1 text-[10px] font-medium text-muted-foreground">
+                  <div className="absolute top-1 left-1 text-xs font-medium text-muted-foreground">
                     {element.number}
                   </div>
                   <div className="flex h-full w-full flex-col items-center justify-center">

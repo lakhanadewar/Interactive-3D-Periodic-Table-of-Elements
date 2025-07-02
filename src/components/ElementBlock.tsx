@@ -21,11 +21,11 @@ export default function ElementBlock({ element }: ElementBlockProps) {
       }}
       transition={{ type: 'spring', stiffness: 300, damping: 15 }}
     >
-      <Link href={`/element/${element.name}`} className="block w-full">
+      <Link href={`/element/${element.name}`} className="block w-full aspect-square">
         <div
           className={cn(
-            'relative group w-full aspect-square p-1 sm:p-2 rounded-lg text-card-foreground transition-all duration-300 cursor-pointer flex flex-col justify-between',
-            'bg-card/50 border border-border/30 hover:border-transparent backdrop-blur-sm'
+            'relative group w-full h-full p-1 sm:p-2 rounded-lg text-foreground transition-all duration-300 cursor-pointer flex flex-col justify-between',
+            'bg-secondary border border-border hover:border-transparent dark:bg-card/50 dark:border-border/30 dark:backdrop-blur-sm'
           )}
           style={{
             '--glow-color': glowColor,

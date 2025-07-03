@@ -24,8 +24,8 @@ export default function ElementBlock({ element }: ElementBlockProps) {
       <Link href={`/element/${element.name}`} className="block w-full">
         <div
           className={cn(
-            'relative group w-full aspect-square p-1 sm:p-2 rounded-lg text-white transition-all duration-300 cursor-pointer flex flex-col justify-between',
-            'bg-card/50 border border-border/30 hover:border-transparent backdrop-blur-sm'
+            'relative group w-full aspect-square p-1 sm:p-2 rounded-lg text-card-foreground transition-all duration-300 cursor-pointer flex flex-col justify-between',
+            'bg-card/50 border border-border dark:border-border/30 hover:border-primary dark:hover:border-transparent backdrop-blur-sm'
           )}
           style={{
             '--glow-color': glowColor,
@@ -43,11 +43,11 @@ export default function ElementBlock({ element }: ElementBlockProps) {
           ></div>
           
           <div className="relative flex justify-between items-start">
-            <div className="text-xs font-bold text-white/70">{element.number}</div>
+            <div className="text-xs font-bold text-muted-foreground">{element.number}</div>
           </div>
           <div className="relative text-center">
             <div className="text-xl md:text-3xl font-bold tracking-tighter font-headline">{element.symbol}</div>
-            <div className="relative text-[9px] md:text-xs text-white/70 h-4 overflow-hidden">
+            <div className="relative text-[9px] md:text-xs text-muted-foreground h-4 overflow-hidden">
               <p className="truncate w-full h-full flex items-center justify-center transition-opacity duration-200 group-hover:opacity-0">{element.name}</p>
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center">
                 <p className="animate-marquee flex-shrink-0 flex">

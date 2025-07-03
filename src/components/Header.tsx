@@ -11,6 +11,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
+import { ThemeToggle } from "./ThemeToggle";
 
 const navItems = [
   { href: "/", label: "Explorer", icon: LayoutGrid },
@@ -46,6 +47,7 @@ export default function Header() {
         </nav>
 
         <div className="flex flex-1 items-center justify-end">
+          <ThemeToggle />
           {/* Mobile Nav */}
           <div className="md:hidden fixed bottom-0 left-0 right-0 border-t border-border/40 bg-background/95 p-2">
             <nav className="flex justify-around">

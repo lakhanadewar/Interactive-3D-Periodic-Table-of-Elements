@@ -9,9 +9,8 @@ export default function PeriodicTable() {
       <div 
         className="grid gap-1 transform-style-3d" 
         style={{ 
-          gridTemplateColumns: 'repeat(18, minmax(0, 1fr))',
+          gridTemplateColumns: 'repeat(18, minmax(110px, 1fr))',
           gridAutoFlow: 'dense',
-          minWidth: '900px'
         }}
       >
         {elements.map((element) => (

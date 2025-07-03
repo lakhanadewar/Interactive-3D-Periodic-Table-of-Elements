@@ -10,11 +10,18 @@ export async function generateStaticParams() {
 }
 
 export default async function ElementPage({ params }: { params: { name: string } }) {
-  const element = getElementByName(decodeURIComponent(params.name));
+  const { name } = params;
+  const element = getElementByName(decodeURIComponent(name));
 
   if (!element) {
     notFound();
   }
 
-  return <ElementPageContent element={element} />;
+  const elements = getElements();
+  const currentIndex = elements.findIndex(el => el.number === element.number);
+  
+  const prevElement = currentIndex > 0 ? elements[currentIndex - 1] : null;
+  const nextElement = currentIndex < elements.length - 1 ? elements[currentIndex + 1] : null;
+
+  return <ElementPageContent element={element} prevElement={prevElement} nextElement={nextElement} />;
 }

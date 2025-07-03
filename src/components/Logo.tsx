@@ -19,7 +19,7 @@ export default function Logo() {
         textAnchor="middle"
         letterSpacing="-0.5"
       >
-        Qt
+        QT
       </text>
     </svg>
   );

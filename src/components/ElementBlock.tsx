@@ -54,7 +54,7 @@ export default function ElementBlock({ element }: ElementBlockProps) {
           </div>
           <div className="relative text-center">
             <div className="text-xl md:text-3xl font-bold tracking-tighter font-headline text-card-foreground">{element.symbol}</div>
-            <div className="text-xs text-muted-foreground whitespace-nowrap">
+            <div className="text-sm text-muted-foreground whitespace-nowrap">
               {element.name}
             </div>
           </div>

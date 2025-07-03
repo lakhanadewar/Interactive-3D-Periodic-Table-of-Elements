@@ -2,6 +2,10 @@ import { notFound } from "next/navigation";
 import { getElementByName, getElements } from "@/lib/elements";
 import ElementPageContent from "@/components/ElementPageContent";
 
+interface PageProps {
+  params: { name: string };
+}
+
 export async function generateStaticParams() {
   const elements = getElements();
   return elements.map((element) => ({
@@ -9,9 +13,9 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function ElementPage({ params }: { params: { name: string } }) {
+export default async function ElementPage({ params }: PageProps) {
   const { name } = params;
-  const element = getElementByName(decodeURIComponent(name));
+  const element = getElementByName(name);
 
   if (!element) {
     notFound();

@@ -24,8 +24,9 @@ export default function ElementBlock({ element }: ElementBlockProps) {
       <Link href={`/element/${element.name}`} className="block w-full">
         <div
           className={cn(
-            'relative group w-full aspect-square p-1 sm:p-2 rounded-lg text-card-foreground transition-all duration-300 cursor-pointer flex flex-col justify-between',
-            'bg-card/50 border dark:border-border/30 hover:border-primary dark:hover:border-transparent backdrop-blur-sm'
+            'relative group w-full aspect-square p-1 sm:p-2 rounded-lg transition-all duration-300 cursor-pointer flex flex-col justify-between',
+            'bg-card/50 border dark:border-border/30 hover:border-transparent backdrop-blur-sm',
+            'dark:text-card-foreground text-card-foreground border-black/10 dark:border-border/30'
           )}
           style={{
             '--glow-color': glowColor,
@@ -43,11 +44,11 @@ export default function ElementBlock({ element }: ElementBlockProps) {
           ></div>
           
           <div className="relative flex justify-between items-start">
-            <div className="text-xs font-bold text-muted-foreground">{element.number}</div>
+            <div className="text-base font-bold text-muted-foreground">{element.number}</div>
           </div>
           <div className="relative text-center">
             <div className="text-xl md:text-3xl font-bold tracking-tighter font-headline">{element.symbol}</div>
-            <div className="text-[9px] md:text-xs text-muted-foreground truncate">
+            <div className="text-[9px] md:text-xs text-muted-foreground">
               {element.name}
             </div>
           </div>

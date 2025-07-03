@@ -62,7 +62,7 @@ export default function ElementBlock({ element }: ElementBlockProps) {
                       <div className="text-xl font-bold font-headline leading-none">
                         {element.symbol}
                       </div>
-                      <div className="mt-1 w-full truncate px-1 text-xs leading-tight text-muted-foreground">
+                      <div className="mt-1 w-full truncate px-1 text-xs leading-tight text-muted-foreground text-center">
                         {element.name}
                       </div>
                   </div>

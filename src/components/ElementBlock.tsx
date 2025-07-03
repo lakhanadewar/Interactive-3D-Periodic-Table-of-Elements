@@ -4,13 +4,15 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import type { ElementData } from '@/lib/types';
+import { categoryColors } from '@/lib/category-colors';
 
 interface ElementBlockProps {
   element: ElementData;
 }
 
 export default function ElementBlock({ element }: ElementBlockProps) {
-  const glowColor = 'hsl(var(--primary))';
+  const colorInfo = categoryColors[element.category] || categoryColors['unknown'];
+  const glowColor = colorInfo.hex;
 
   return (
     <motion.div
@@ -25,16 +27,20 @@ export default function ElementBlock({ element }: ElementBlockProps) {
         <div
           className={cn(
             'relative group w-full aspect-square p-1 sm:p-2 rounded-lg transition-all duration-300 cursor-pointer flex flex-col justify-between',
-            'bg-card/50 border dark:border-border/30 hover:border-transparent backdrop-blur-sm',
-            'dark:text-card-foreground text-card-foreground border-black/10 dark:border-border/30'
+            'border dark:border-border/30 hover:border-transparent backdrop-blur-sm',
+            'border-black/10'
           )}
           style={{
             '--glow-color': glowColor,
+            backgroundColor: `${glowColor}33`, // 33 is approx 20% opacity
           } as React.CSSProperties}
         >
           <div 
-            className="absolute -inset-px rounded-lg bg-primary/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-lg"
+            className="absolute -inset-px rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-lg"
             aria-hidden="true"
+            style={{
+              backgroundColor: glowColor
+            }}
           ></div>
           <div 
             className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"
@@ -44,11 +50,11 @@ export default function ElementBlock({ element }: ElementBlockProps) {
           ></div>
           
           <div className="relative flex justify-between items-start">
-            <div className="text-base font-bold text-muted-foreground">{element.number}</div>
+            <div className="text-sm font-bold text-muted-foreground">{element.number}</div>
           </div>
           <div className="relative text-center">
-            <div className="text-xl md:text-3xl font-bold tracking-tighter font-headline">{element.symbol}</div>
-            <div className="text-[9px] md:text-xs text-muted-foreground">
+            <div className="text-xl md:text-3xl font-bold tracking-tighter font-headline text-card-foreground">{element.symbol}</div>
+            <div className="text-xs text-muted-foreground whitespace-nowrap">
               {element.name}
             </div>
           </div>

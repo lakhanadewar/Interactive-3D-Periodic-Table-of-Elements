@@ -5,7 +5,6 @@ import { Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
 
 import { Switch } from "@/components/ui/switch"
-import { Skeleton } from "@/components/ui/skeleton"
 
 export function ThemeToggle() {
   const { setTheme, resolvedTheme } = useTheme()
@@ -16,7 +15,7 @@ export function ThemeToggle() {
   }, [])
 
   if (!mounted) {
-    return <Skeleton className="h-6 w-11 rounded-full" />
+    return null
   }
 
   const isDarkMode = resolvedTheme === "dark"

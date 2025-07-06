@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack -p 9002",
+    "dev": "next dev --turbopack -p 8080",
     "genkit:dev": "genkit start -- tsx src/ai/dev.ts",
     "genkit:watch": "genkit start -- tsx --watch src/ai/dev.ts",
     "build": "next build",
-    "deploy": "next build && touch out/.nojekyll && gh-pages -d out",
+    "deploy": "next build && touch dir/.nojekyll && gh-pages -d dir",
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit"

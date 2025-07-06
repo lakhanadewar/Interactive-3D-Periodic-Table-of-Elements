@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack -p 9002",
+    "dev": "next dev --turbopack -p 8080",
     "genkit:dev": "genkit start -- tsx src/ai/dev.ts",
     "genkit:watch": "genkit start -- tsx --watch src/ai/dev.ts",
     "build": "next build",
-    "deploy": "gh-pages -d out",
+    "deploy": "next build && touch dir/.nojekyll && gh-pages -d dir",
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit"
@@ -65,6 +65,7 @@
     "@types/react-dom": "^18",
     "@types/three": "^0.165.0",
     "genkit-cli": "^1.13.0",
+    "gh-pages": "^6.1.1",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
